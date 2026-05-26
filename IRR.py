@@ -33,16 +33,16 @@ st.markdown("---")
 
 # --- Inputs ---
 st.markdown("### 1. Core Loan Parameters")
-total_asset_value = st.number_input("Total Value of Assets (KES)", min_value=0.0, value=8000000.0, step=100000.0)
-loan_amount = st.number_input("Loan Amount (KES)", min_value=0.0, value=5000000.0, step=100000.0)
-doc_charge = st.number_input("Documentation Charge (KES)", min_value=0.0, value=17000.0, step=1000.0)
-num_units = st.number_input("Number of Units", min_value=1, value=2, step=1)
-repayment_months = st.number_input("Repayment Length (Months)", min_value=1, value=24, step=1)
+total_asset_value = st.number_input("Total Value of Assets (KES)", min_value=0.0, value=0.0, step=100000.0)
+loan_amount = st.number_input("Loan Amount (KES)", min_value=0.0, value=5000000.0, step=0.0)
+doc_charge = st.number_input("Documentation Charge (KES)", min_value=0.0, value=0.0, step=1000.0)
+num_units = st.number_input("Number of Units", min_value=1, value=1, step=1)
+repayment_months = st.number_input("Repayment Length (Months)", min_value=1, value=12, step=1)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
 st.markdown("### 2. Rates")
-finance_rate_pct = st.slider("Finance Rate (%)", min_value=0.0, max_value=100.0, value=18.0, step=0.1)
+finance_rate_pct = st.slider("Finance Rate (%)", min_value=0.0, max_value=100.0, value=16.0, step=0.1)
 commitment_rate_pct = st.slider("Commitment Rate (%)", min_value=0.0, max_value=20.0, value=2.0, step=0.1)
 
 finance_rate = finance_rate_pct / 100.0
