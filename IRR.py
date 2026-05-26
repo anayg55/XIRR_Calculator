@@ -65,6 +65,7 @@ def format_doc():
 
 # --- UI Layout Setup ---
 st.set_page_config(page_title="IRR Calculator", layout="wide")
+
 # --- Custom CSS for Input Boxes ---
 st.markdown(
     """
@@ -87,11 +88,10 @@ with header_left:
 
 with header_right:
     # Ensure 'company_logo.png' is in the same folder as this script
-    # You can adjust the width parameter to make the logo larger or smaller
     try:
-        st.image("company_logo.png", width=200)
+        st.image("company_logo.png", width=150)
     except FileNotFoundError:
-        st.write("*(Logo placeholder - add company_logo.png)*")
+        st.write("*(Logo placeholder)*")
 
 st.markdown("---")
 
@@ -115,6 +115,7 @@ with col1:
     finance_rate_pct = st.number_input("Finance Rate (%)", min_value=0.0, max_value=100.0, value=16.0, step=0.1)
     commitment_rate_pct = st.number_input("Commitment Rate (%)", min_value=0.0, max_value=20.0, value=2.0, step=0.1)
 
+# --- Background Math ---
 finance_rate = finance_rate_pct / 100.0
 commitment_rate = commitment_rate_pct / 100.0
 repayment_years = repayment_months / 12.0
@@ -129,10 +130,10 @@ other_charges = commitment_cost + bank_charge + doc_charge + option_money + tran
 with col2:
     st.subheader("2. Fees & Repayment Logic")
 
-    # Custom HTML for Asset Value (Slate theme)
+    # Updated Asset Value Box (Uses Primary Blue #415367)
     st.markdown(
         f"""
-        <div style="background-color: #2b3c4f; padding: 15px; border-radius: 5px; border-left: 5px solid #415367; color: white;">
+        <div style="background-color: #a72753; padding: 15px; border-radius: 5px; color: white;">
             <strong>Asset Value:</strong> KES {total_asset_value:,.2f} for {num_units} unit(s)
         </div>
         <br>
@@ -146,7 +147,7 @@ with col2:
     st.write(f"- **Option Money:** KES {option_money:,.2f}")
     st.write(f"- **Transfer Charge:** KES {transfer_charge:,.2f}")
 
-    # Custom HTML for Total Charges (Crimson theme)
+    # Total Charges Box (Uses Secondary Crimson #a72753)
     st.markdown(
         f"""
         <br>
@@ -186,7 +187,7 @@ with col3:
 
         if monthly_irr is not None:
             annual_irr = monthly_irr * 12
-            # Custom HTML for Annualized IRR (Matches Total Other Charges crimson)
+            # Annualized IRR Box (Uses Secondary Crimson #a72753)
             st.markdown(
                 f"""
                 <br>
@@ -197,21 +198,21 @@ with col3:
                 unsafe_allow_html=True
             )
         else:
-            # Custom HTML for Invalid IRR
+            # Invalid IRR Error Box (Uses Secondary Crimson #a72753)
             st.markdown(
                 """
                 <br>
-                <div style="background-color: #3b424a; padding: 15px; border-radius: 5px; border-left: 5px solid #ffcc00; color: white;">
+                <div style="background-color: #a72753; padding: 15px; border-radius: 5px; color: white;">
                     Could not calculate a valid IRR for these inputs.
                 </div>
                 """,
                 unsafe_allow_html=True
             )
     else:
-        # Custom HTML for Zero Loan Warning
+        # Zero Loan Warning Box (Uses Secondary Crimson #a72753 instead of gray/yellow)
         st.markdown(
             """
-            <div style="background-color: #3b424a; padding: 15px; border-radius: 5px; border-left: 5px solid #ffcc00; color: white;">
+            <div style="background-color: #a72753; padding: 15px; border-radius: 5px; color: white;">
                 Please enter a Loan Amount greater than 0 to view final metrics.
             </div>
             """,
