@@ -122,8 +122,8 @@ repayment_years = repayment_months / 12.0
 
 commitment_cost = loan_amount * commitment_rate * repayment_years
 bank_charge = repayment_years * 6000
-option_money = repayment_years * 10000
-transfer_charge = repayment_years * 10000
+option_money = num_units * 10000
+transfer_charge = num_units * 10000
 other_charges = commitment_cost + bank_charge + doc_charge + option_money + transfer_charge
 
 # --- Column 2: Fees Breakdown ---
